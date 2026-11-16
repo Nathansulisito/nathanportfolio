@@ -114,6 +114,10 @@ a:focus-visible{outline:3px solid var(--or);outline-offset:3px}
 .vb.sv{overflow:hidden}.vb.sv iframe{width:360px;height:640px;transform-origin:0 0}
 .vb.dv{overflow:hidden}.vb.dv iframe{width:800px;height:450px;transform-origin:0 0}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.rvon .rv{opacity:0;transform:translate3d(0,36px,0);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);will-change:opacity,transform}
+.rvon .rv.in{opacity:1;transform:none;will-change:auto}
+.rvon .rv.rf{transform:none}
+@media (prefers-reduced-motion:reduce){.rvon .rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -152,7 +156,7 @@ a:focus-visible{outline:3px solid var(--or);outline-offset:3px}
   <div class="fx hm" data-s="-.12" data-r=".4" style="right:-40px;top:8%;width:170px"><svg viewBox="0 0 100 100"><g stroke="#FF8A00" stroke-width="18"><path d="M50 4v92M10 27l80 46M10 73l80-46"/></g></svg></div>
   <div class="wrap">
     <h2>Featured Projects</h2>
-    <h3 class="sub">Short form</h3><div class="vg s"><div class="vid sv" data-id="18-2M9BPAdYVCVDGI85oD0_xq1Gc7EzSY" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1dOmR1jKsbMG7M_75ygLES0ephZHVo6dX" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1wBfPzs0BrGm6mLDBvfiV8uG2jhlFUDUW" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="11ZW5i1sWwNDTVpRJQXilk7o-_bPSdvxd" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div></div>
+    <h3 class="sub">Short form</h3><div class="vg s"><div class="vid sv" data-id="18-2M9BPAdYVCVDGI85oD0_xq1Gc7EzSY" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1dOmR1jKsbMG7M_75ygLES0ephZHVo6dX" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1wBfPzs0BrGm6mLDBvfiV8uG2jhlFUDUW" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="11ZW5i1sWwNDTVpRJQXilk7o-_bPSdvxd" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1MzFeU5uB6Fjxnvn-yThAIWCWWTfnLCSE" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1cdIetjDXNDF7TE0e31l98KdlA1fCQ3tp" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid sv" data-id="1aQQlrnhMPugrRpJLocWQdkVSqNx48eLN" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div></div>
     <h3 class="sub">Long form</h3><div class="vg l"><div class="vid lv" data-id="1I55ICmhaTq4S6cDVzAPCyDR6nAiAux_-" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid lv" data-id="yt:4OeQ1nzh8DY" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid lv" data-id="yt:4scT0-T-1oQ" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div><div class="vid lv" data-id="yt:ZGjBGC6nYWc" role="button" tabindex="0" aria-label="Play sample video"><span class="pl"></span><small>Your video here</small></div></div>
     <div class="more"><a class="btn or" href="https://sites.google.com/view/nathan-portofolio/home" target="_blank" rel="noopener">Full portfolio</a></div>
     </div>
@@ -250,6 +254,17 @@ function frame(){
 addEventListener('resize',function(){vh=innerHeight;layoutTL();fitSV()});addEventListener('load',function(){layoutTL();fitSV()});
 layoutTL();if(RM)tl.classList.add('rm');
 if(RM){bars.forEach(function(b){b.style.clipPath='none'})}else{requestAnimationFrame(frame)}
+})();
+</script>
+<script>
+(function(){
+if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var G=[['.about .grid2 > div:first-child'],['.about .sg > div'],['.sec h2'],['.sec h3.sub'],['.vg > *'],['.more'],['.tlh'],['.tlv'],['.xps .xp'],['.cta .wrap > *'],['.mq','f']];
+var els=[],seen=[];
+G.forEach(function(g){var by=[];[].forEach.call(document.querySelectorAll(g[0]),function(e){if(seen.indexOf(e)>-1)return;seen.push(e);var p=e.parentNode,k=by.map(function(x){return x.p}).indexOf(p);if(k<0){by.push({p:p,n:0});k=by.length-1}var i=by[k].n++;e.classList.add('rv');if(g[1]==='f')e.classList.add('rf');e.style.setProperty('--d',(Math.min(i,5)*0.09).toFixed(2)+'s');els.push(e)})});
+document.documentElement.classList.add('rvon');
+var io=new IntersectionObserver(function(es){es.forEach(function(en){var t=en.target;if(en.isIntersecting){t.classList.add('in')}else if(en.boundingClientRect.top>innerHeight*.5){t.classList.remove('in')}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+els.forEach(function(e){io.observe(e)});
 })();
 </script>
 </body>
