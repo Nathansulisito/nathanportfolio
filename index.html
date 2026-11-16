@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nathan Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://drive.google.com">
-<link rel="preconnect" href="https://www.youtube.com">
-<link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
-<link rel="dns-prefetch" href="https://www.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#EFE9E4;--ink:#161616;--card:#fff;--dark:#161616;--dink:#f4f0ec;--mut:#6b6762;--or:#FF8A00;--tint:#fff1de;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -269,25 +265,6 @@ G.forEach(function(g){var by=[];[].forEach.call(document.querySelectorAll(g[0]),
 document.documentElement.classList.add('rvon');
 var io=new IntersectionObserver(function(es){es.forEach(function(en){var t=en.target;if(en.isIntersecting){t.classList.add('in')}else if(en.boundingClientRect.top>innerHeight*.5){t.classList.remove('in')}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
 els.forEach(function(e){io.observe(e)});
-})();
-</script>
-<script>
-(function(){
-var c=navigator.connection||{};
-if(c.saveData||/(^|-)2g$/.test(c.effectiveType||''))return;
-var q=[].slice.call(document.querySelectorAll('.vb iframe')).filter(function(f){return f.loading==='lazy'});
-if(!q.length)return;
-q.forEach(function(f){f.addEventListener('load',function(){f._ld=1},{once:true})});
-var run=0,MAX=2;
-function next(){
- while(run<MAX&&q.length){
-  var f=q.shift();if(f._ld)continue;run++;
-  (function(f){var d=false;function fin(){if(d)return;d=true;run--;setTimeout(next,250)}
-   f.addEventListener('load',fin,{once:true});setTimeout(fin,7000);f.loading='eager'})(f);
- }
-}
-function go(){(window.requestIdleCallback||function(fn){setTimeout(fn,300)})(next,{timeout:2000})}
-if(document.readyState==='complete')go();else addEventListener('load',go,{once:true});
 })();
 </script>
 </body>
